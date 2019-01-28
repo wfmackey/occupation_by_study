@@ -5,6 +5,6 @@ account: wfmackey
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 667666
-bundleId: 1837964
+bundleId: 1837973
 url: https://wfmackey.shinyapps.io/occupations_by_study/
-when: 1548477144.16131
+when: 1548478132.69237

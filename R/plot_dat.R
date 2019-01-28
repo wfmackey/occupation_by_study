@@ -62,9 +62,9 @@ plot_dat <- function(gender,
                y = pc,
                alpha = (if_else(occ != "Other occupations", 1, 0.5))))
   
-  if (!compareGender & !compareQual) p <- p + geom_bar(fill = grattan_lightorange, stat = "identity")
-  if ( compareGender &  compareQual) p <- p + geom_bar(aes(fill = qualsimple, linetype = sex), stat = "identity")
-  if ( compareGender & !compareQual) p <- p + geom_bar(aes(fill = sex), stat = "identity")
+  if (!compareGender & !compareQual) p <- p + geom_bar(fill = grattan_darkorange, stat = "identity")
+  if ( compareGender &  compareQual) p <- p + geom_bar(aes(fill = sex), stat = "identity", position = "dodge")
+  if ( compareGender & !compareQual) p <- p + geom_bar(aes(fill = sex), stat = "identity", position = "dodge")
   if (!compareGender &  compareQual) p <- p + geom_bar(aes(fill = qualsimple), stat = "identity")
   
   p <- p + 
@@ -86,10 +86,17 @@ plot_dat <- function(gender,
          y = "Per cent of workers")
   
   
-  if (!compareGender & !compareQual) p
-  if ( compareGender &  compareQual) p <- p + facet_grid(sex ~ qualsimple)
-  if ( compareGender & !compareQual) p <- p + facet_grid(. ~ sex)
-  if (!compareGender &  compareQual) p <- p + facet_grid(.   ~ qualsimple)
+  if (!compareGender & !compareQual) p <- p
+  
+  if ( compareGender &  compareQual) {
+    p <- p + facet_grid(. ~ qualsimple) + theme(legend.position = "top") + guides(alpha = FALSE, colour = "Gender")
+  }
+  
+  if ( compareGender & !compareQual) {
+    p <- p + theme(legend.position = "top") + guides(alpha = FALSE, colour = "Gender")
+  }
+  
+  if (!compareGender &  compareQual) p <- p + facet_grid(. ~ qualsimple)
   
   
   p
