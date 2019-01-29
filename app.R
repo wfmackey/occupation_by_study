@@ -87,8 +87,8 @@ server <- function(input, output) {
              occ_level = input$occ_level,
              topn = input$occ_number,
              getData = TRUE,
-             useTitle = FALSE)
-  })
+             useTitle = FALSE) 
+    }, width = 'auto', height = 800)
   
   output$theTitle <- renderText({ 
     get_title(foe = input$foe,
